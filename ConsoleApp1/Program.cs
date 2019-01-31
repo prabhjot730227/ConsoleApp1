@@ -10,7 +10,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-
+            Countryside Ontario = new Countryside();
+            Ontario.run();
         }
     }
     class Village
@@ -32,6 +33,15 @@ namespace ConsoleApp1
         public Village Maple;
         public Village Toronto;
         public Village Ajax;
+        public Village Head;
+        public Village Tail;
+        public Village Temp;
+
+        public void run()
+        {
+            this.MapInitializer();
+            this.LookForAstrilde();
+        }
 
         public void MapInitializer()
 
@@ -41,6 +51,7 @@ namespace ConsoleApp1
             Maple.VillageName = "Maple";
             Maple.previousVillage = null;
             Maple.nextVillage = Toronto;
+            Maple.isAstrildeHere = true;
             Toronto = new Village();
             Toronto.previousVillage = Maple;
             Toronto.VillageName = "Toronto";
@@ -49,13 +60,22 @@ namespace ConsoleApp1
             Ajax.VillageName = "Ajax";
             Ajax.nextVillage = null;
             Ajax.previousVillage = Toronto;
-            Ajax.isAstrildeHere = true;
+            //Ajax.isAstrildeHere = true;
 
 
         }
         public void LookForAstrilde()
         {
+            Head = Maple;
+            if (Head.isAstrildeHere)
+            {
+                Console.WriteLine("Yeah ! Astrilde is in " + Head.VillageName);            }
 
+
+            //while (true)
+            //{
+                
+            //}
         }
     }
 }
