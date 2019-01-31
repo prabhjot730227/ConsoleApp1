@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp39
 {
     class Program
     {
@@ -12,20 +12,40 @@ namespace ConsoleApp1
         {
             Countryside Ontario = new Countryside();
             Ontario.run();
+
+        }
+    }
+
+    class LearningExample
+    {
+        public void run()
+        {
+            Village Toronto;
+            Village a;
+            Village b;
+            Toronto = new Village();
+            a = Toronto;
+
+            Toronto = new Village();
+            b = Toronto;
+
+            if (a == b) { Console.WriteLine("same"); }
+            else
+            { Console.WriteLine("different obj refs"); }
         }
     }
     class Village
     {
-        
-            public static int numberOfVillages = 0;
-            public Village nextVillage;
-            public Village previousVillage;
-            public string VillageName;
-            public bool isAstrildeHere = false;
+        public static int numberOfVillages = 0;
+        public Village nextVillage;
+        public Village previousVillage;
+        public string VillageName;
+        public bool isAstrildeHere = false;
 
-            public Village() {
-               Village.numberOfVillages++; }
-        
+        public Village()
+        {
+            Village.numberOfVillages++;
+        }
     }
 
     class Countryside
@@ -35,47 +55,57 @@ namespace ConsoleApp1
         public Village Ajax;
         public Village Head;
         public Village Tail;
-        public Village Temp;
+        public Village Current;
 
         public void run()
         {
             this.MapInitializer();
             this.LookForAstrilde();
+            Console.WriteLine("Hugi found Astrilde in " + Current.VillageName);
         }
 
         public void MapInitializer()
-
-       
         {
+            Ajax = new Village();
+            Toronto = new Village();
             Maple = new Village();
+
             Maple.VillageName = "Maple";
             Maple.previousVillage = null;
             Maple.nextVillage = Toronto;
-            Maple.isAstrildeHere = true;
-            Toronto = new Village();
+            Ajax.isAstrildeHere = true;
+
             Toronto.previousVillage = Maple;
             Toronto.VillageName = "Toronto";
             Toronto.nextVillage = Ajax;
-            Ajax = new Village();
+
             Ajax.VillageName = "Ajax";
             Ajax.nextVillage = null;
             Ajax.previousVillage = Toronto;
-            //Ajax.isAstrildeHere = true;
-
-
         }
+
+
         public void LookForAstrilde()
         {
-            Head = Maple;
-            if (Head.isAstrildeHere)
+            
+            Current = Maple;
+            while (Current.nextVillage != null)
             {
-                Console.WriteLine("Yeah ! Astrilde is in " + Head.VillageName);            }
-
-
-            //while (true)
-            //{
-                
-            //}
+                if (Current.isAstrildeHere)
+                {
+                    Console.WriteLine("Found Astrilde");
+                    return;
+                }
+                else
+                {
+                    Current = Current.nextVillage;
+                }
+            }
         }
     }
-}
+}   
+                
+        
+
+            
+    
